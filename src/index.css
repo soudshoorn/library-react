@@ -455,6 +455,15 @@ select {
   align-items: flex-start;
 }
 
+.book__link {
+  color: #7342d6;
+}
+
+.book__title--link {
+  text-decoration: none;
+  color: #242424;
+}
+
 .book__selected--top {
   padding: 0 24px;
   margin-bottom: 8px;
@@ -510,8 +519,8 @@ FEATURED & LATEST
 */
 
 #features {
-  background-color: rgba(115, 66, 214, 0.1);
   padding-top: 8vw;
+  background-color: rgba(115, 66, 214, 0.1);
 }
 
 .books {
@@ -522,12 +531,49 @@ FEATURED & LATEST
 .book {
   width: 25%;
   padding: 24px;
+  transition: all 300ms ease;
+}
+
+.book:hover {
+  transform: translateY(-4px);
 }
 
 .book__img {
   max-height: 320px;
   max-width: 250px;
   transition: all 300ms ease;
+}
+
+.book__img--skeleton {
+  width: 100%;
+  max-width: 250px;
+  height: 320px;
+  background-color: rgb(204, 204, 204);
+  margin-bottom: 8px;
+}
+
+.skeleton {
+  background-color: rgb(227, 227, 227) !important;
+  margin-bottom: 8px;
+}
+
+.book__title--skeleton {
+  height: 21px;
+  width: 100%;
+}
+
+.book__rating--skeleton {
+  width: 60%;
+  height: 19px;
+}
+
+.book__price--skeleton {
+  width: 80%;
+  height: 19px;
+}
+
+.book__link {
+  color: #242424;
 }
 
 .book__img--wrapper {
@@ -537,18 +583,13 @@ FEATURED & LATEST
   display: flex;
 }
 
-.book:hover .book__img {
-  transform: scale(1.03);
-}
-
 .book__title {
   font-size: 20px;
   margin-bottom: 8px;
 }
 
-.book__title:hover {
-  text-decoration: underline;
-  cursor: pointer;
+.book__title--link {
+  color: #242424;
 }
 
 .book__ratings {
@@ -562,13 +603,9 @@ FEATURED & LATEST
   color: #bfbfbf;
 }
 
-.book__price {
-  font-weight: bold;
-}
+/* 
 
-/*
-
-EXPLORE 
+EXPLORE
 
 */
 

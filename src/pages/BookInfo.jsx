@@ -5,14 +5,22 @@ import Book from "../components/ui/Book";
 import Price from "../components/ui/Price";
 import Rating from "../components/ui/Rating";
 
-const Bookinfo = ({ books }) => {
+const Bookinfo = ({ books, addToCart, cart }) => {
   const { id } = useParams();
   const book = books.find((book) => +book.id === +id);
+
+  function addedBookToCart(book) {
+    addToCart(book);
+  }
+
+  function bookExistsOnCart() {
+    return cart.find((book) => +book.id === +id);
+  }
 
   return (
     <div id="books__body">
       <main id="books__main">
-        <div className="books__container">
+        <div className="container__book--selected">
           <div className="row">
             <div className="book__selected--top">
               <Link to="/books" className="book__link">
@@ -52,7 +60,15 @@ const Bookinfo = ({ books }) => {
                     voluptatum.
                   </div>
                 </div>
-                <button className="btn">Add to Cart</button>
+                {bookExistsOnCart() ? (
+                  <Link to="/cart">
+                    <button className="btn">Checkout</button>
+                  </Link>
+                ) : (
+                  <button className="btn" onClick={() => addedBookToCart(book)}>
+                    Add to Cart
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -64,12 +80,12 @@ const Bookinfo = ({ books }) => {
               <h2 className="book__selected--top--title">Recommended Books</h2>
             </div>
             <div className="books">
-            {books
-              .filter((book) => book.rating === 5 && +book.id !== +id)
-              .slice(0, 4)
-              .map((book) => (
-                <Book book={book} key={book.id} />
-              ))}
+              {books
+                .filter((book) => book.rating === 5 && +book.id !== +id)
+                .slice(0, 4)
+                .map((book) => (
+                  <Book book={book} key={book.id} />
+                ))}
             </div>
           </div>
         </div>
