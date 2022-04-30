@@ -1,32 +1,41 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import LibraryLogo from '../assets/Library.svg';
+import Logo from '../assets/Library.svg';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
+    function openMenu() {
+        document.body.classList += ' menu--open';
+    }
+    
+    function closeMenu() {
+        document.body.classList.remove('menu--open');
+    }
+
     return (
         <nav>
             <div className="nav__container">
-                <a href="/">
-                    <img src={LibraryLogo} className="logo" alt="" />
-                </a>
+                <Link to="/">
+                    <img src={Logo} className="logo" alt="" />
+                </Link>
                 <ul className="nav__links">
                     <li className="nav__list">
-                        <a href="/" className="nav__link">
+                        <Link to="/" className="nav__link">
                             Home
-                        </a>
+                        </Link>
                     </li>
                     <li className="nav__list">
-                        <a href="/" className="nav__link">
+                        <Link to="/books" className="nav__link">
                             Books
-                        </a>
+                        </Link>
                     </li>
-                    <button className="btn__menu">
+                    <button className="btn__menu" onClick={openMenu}>
                         <FontAwesomeIcon icon="bars" />
                     </button>
                     <li className="nav__icon">
-                        <a href="/cart" className="nav__link">
+                        <Link to="/cart" className="nav__link">
                             <FontAwesomeIcon icon="shopping-cart" />
-                        </a>
+                        </Link>
                         <span className="cart__length">2</span>
                     </li>
                 </ul>
@@ -34,18 +43,17 @@ const Nav = () => {
             <div className="menu__backdrop">
                 <div className="menu__bar">
                     <div className="menu__logo">
-                        <img className="menu__logo--img" src={LibraryLogo} alt="" />
+                        <img className="menu__logo--img" src={Logo} alt="" />
                     </div>
                     <div className="menu__btn">
-                        <button className="btn__menu btn__menu--close">
+                        <button className="btn__menu btn__menu--close" onClick={closeMenu}>
                             <FontAwesomeIcon icon="times" />
                         </button>
                     </div>
                 </div>
                 <ul className="menu__links">
-                    <li className="menu__list"><a className="menu__link" href="/">Home</a></li>
-                    <li className="menu__list"><a className="menu__link" href="/">Contact</a></li>
-                    <li className="menu__list"><a href="./books.html" className="menu__link">Books</a></li>
+                    <li className="menu__list"><Link className="menu__link" to="/">Home</Link></li>
+                    <li className="menu__list"><Link to="/books" className="menu__link">Books</Link></li>
                 </ul>
             </div>
         </nav>
